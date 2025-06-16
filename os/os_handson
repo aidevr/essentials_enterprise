@@ -1,0 +1,110 @@
+ ## who
+  who is logged in 
+ `who`
+ `whoami`
+
+
+ ## awk
+ awk is a tiny, single-purpose scripting language built into almost every Unix/Linux system. Think of it as a data-driven Swiss-army knife for
+
+
+ `awk '{print $1, $3}' file.txt  → prints 1st & 3rd`
+`who | awk '{print $1}'`
+
+
+### Why people love awk
+i. No loop boilerplate – reading line-by-line is implicit.
+
+ii. Built-in math, regex, and associative arrays (cnt[key]++).
+
+iii. Portable – ships with busybox, macOS, every Linux distro.
+
+
+`awk -F, 'NR>1 { sum += $2 } END { print sum }' sales.csv`
+
+| Piece               | Purpose                                                                                    |
+| ------------------- | ------------------------------------------------------------------------------------------ |
+| `-F,`               | Sets the field separator to a comma, so `$1`, `$2`, `$3` map to *item*, *amount*, *date*.  |
+| `NR>1`              | Skips the header row (`NR` = record number). Remove this guard if your file has no header. |
+| `{ sum += $2 }`     | Adds the numeric value in column 2 to the running total `sum` for every data row.          |
+| `END { print sum }` | After the last line, prints the accumulated total—in this case **1800**.                   |
+
+
+## grep
+
+grep (“global regular expression print”) is the go-to Unix command for scanning text and showing only the lines that match a pattern. It streams through input line-by-line—so it’s lightning-fast even on multi-gigabyte logs—and supports both plain strings and powerful regular expressions.
+
+### 1. Case-insensitive search
+grep -i "error" app.log
+### → Prints every line that contains “error”, “Error”, or “ERROR”.
+
+### 2. Count matches instead of showing them
+grep -c "404" access.log
+# → Outputs the number of HTTP 404 lines.
+
+### 3. Show line numbers for context
+grep -n "^Fatal" system.log
+### → “23:Fatal: disk failure” (prefixes each hit with its line number)
+
+### 4. Invert match (everything that *doesn’t* match)
+grep -v "^#" config.conf
+### → Useful for stripping comment lines that start with '#'.
+
+### 5. Recursive search through a codebase
+grep -R --color -E "TODO|FIXME" src/
+# → Walks every file under src/, highlights TODO or FIXME.
+
+### 6. Show surrounding context lines
+grep -A2 -B1 "panic" kernel.log
+# → 1 line *Before* and 2 lines *After* each “panic” for quick diagnosis.
+
+
+| Flag      | Meaning                                           |
+| --------- | ------------------------------------------------- |
+| `-i`      | Ignore case                                       |
+| `-c`      | Count matches                                     |
+| `-n`      | Show line numbers                                 |
+| `-v`      | Invert (show non-matches)                         |
+| `-R`      | Recurse through sub-directories                   |
+| `-E`      | Extended regex (no backslash for `+`, `{n}` etc.) |
+| `--color` | Highlight the matched text                        |
+
+## grep powered with awk
+### 1. Count the number of unique IPs that caused 404 errors
+
+`grep ' 404 ' access.log | awk '{print $1}' | sort -u | wc -l`
+
+
+| Stage              | What it does                                       |
+| ------------------ | -------------------------------------------------- |
+| `grep ' 404 '`     | Keep only lines where the HTTP status is 404.      |
+| `awk '{print $1}'` | Extract the **first field** = client IP.           |
+| `sort -u`          | De-duplicate the IPs (stable way before counting). |
+| `wc -l`            | Print the final count of distinct offenders.       |
+
+### 2. How many Coffee sales exceeded 400 PKR?
+`grep '^Coffee,' sales.csv | awk -F, '$2 > 400' | wc -l`
+| Stage                | Explanation                                                                       |
+| -------------------- | --------------------------------------------------------------------------------- |
+| `grep '^Coffee,'`    | Quickly filters rows beginning with **Coffee**.                                   |
+| `awk -F, '$2 > 400'` | CSV delimiter (`-F,`); pass through only those where **column 2** (amount) > 400. |
+| `wc -l`              | Counts the qualifying rows.                                                       |
+
+## File Descriptors → Sockets → Essential Inspection Commands
+
+---
+
+### 1. File Descriptors (FDs) — the Foundation
+
+- Every open **file, pipe, socket, or device** in a Linux process is referenced by a small integer — the **file descriptor**.  
+- The first three are always reserved:  
+
+| FD | Purpose |
+|----|---------|
+| `0` | **stdin** |
+| `1` | **stdout** |
+| `2` | **stderr** |
+
+```bash
+# Inspect the FDs of the current shell
+ls -l /proc/$$/fd

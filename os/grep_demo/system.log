@@ -1,0 +1,4 @@
+Jun 16 10:26:00 localhost systemd[1]: Started Service X.
+Jun 16 10:26:01 localhost kernel: Fatal: disk failure on /dev/sda
+Jun 16 10:26:02 localhost systemd[1]: Stopping Service Y...
+Jun 16 10:26:03 localhost systemd[1]: Service Y stopped.

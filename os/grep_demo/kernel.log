@@ -1,0 +1,4 @@
+[  123.456789] cpu0: panic - kernel panic at mm/slab.c:234
+[  123.456790] panic: fatal exception
+[  124.123456] usb 1-2: new full-speed USB device
+[  125.654321] panic: process halted
