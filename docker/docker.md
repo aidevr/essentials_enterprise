@@ -12,14 +12,15 @@
 | **List images** | `docker images` | Shows local image cache. |
 | **Run a container (interactive)** | `docker run -it --name demo ubuntu:22.04 bash` | `-it` for interactive TTY. |
 | **Run in background** | `docker run -d -p 8080:80 nginx:alpine` | `-d` detached; `-p` maps ports. |
+| **Run Redis in background** | `docker run -d --name redis-server -p 6379:6379 redis:alpine` | `-d` detached; `-p` maps ports. |
 | **List running containers** | `docker ps` | Add `-a` for stopped ones. |
 | **Stop / remove** | `docker stop <ID>` · `docker rm <ID>` | Or `docker rm -f <ID>` to force. |
 | **Exec into container** | `docker exec -it <ID> bash` | Opens shell inside running container. |
+| **Exec into Redis CLI** | `docker exec -it redis-server redis-cli` | Opens Redis CLI inside the running container. |
 | **View logs** | `docker logs -f <ID>` | `-f` = follow (tail). |
 | **Copy file in/out** | `docker cp host.txt <ID>:/tmp/` | Works both directions. |
 | **Build image** | `docker build -t myapp:1.0 .` | Dot = current directory context. |
 | **Tag & push** | `docker tag myapp:1.0 username/myapp:1.0`<br>`docker push username/myapp:1.0` | Requires `docker login`. |
-| **Clean up** | `docker system prune -f` | Removes dangling stuff. |
 
 ---
 

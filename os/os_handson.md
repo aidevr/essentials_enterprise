@@ -57,7 +57,7 @@ awk -F, 'NR>1 { sum += $2 } END { print sum }' sales.csv
 
 4. **Invert match (everything that *doesn’t* match)**
    ```bash
-   grep -v "^#" config.conf
+   grep -v "#" config.conf
    ```
    → Useful for stripping comment lines that start with `#`.
 
@@ -202,6 +202,7 @@ sudo sysctl -w net.core.somaxconn=4096
 
 ---
 
+
 ## Linux Command Quick‑Reference (Hands‑On Cheatsheet)
 | Topic                | Goal                                   | Command Example                  | What It Does                     |
 | -------------------- | ------------------------------------- | -------------------------------- | -------------------------------- |
@@ -221,7 +222,25 @@ lsof | awk '{print $3}' | sort | uniq -c | sort -nr | head
 ```
 
 ### Expanded Examples with Context
+
+
 #### 1. Permissions
+
+1. **Categories of Users**:
+   - **User (Owner)**: The user who created the file or directory.
+   - **Group**: A group of users who share access to the file or directory.
+   - **Others**: All other users on the system.
+
+2. **Permissions**:
+   - **Read (r)**: Allows viewing the file's contents or listing the directory's contents.
+   - **Write (w)**: Allows modifying or deleting the file or adding/removing files in a directory.
+   - **Execute (x)**: Allows running the file as a program or accessing a directory.
+
+3. **Representation**:
+   - Permissions are often represented using a combination of letters and hyphens. For example, `rwxr-xr-x` means the owner has read, write, and execute permissions, while the group and others have read and execute permissions.
+   - The same permissions can also be represented numerically. For instance, `rwxr-xr-x` is equivalent to the number `755` (read = 4, write = 2, execute = 1).
+
+
 `ls -l report.txt`
 
 
@@ -269,3 +288,56 @@ alice 1043   850  1 10:02 pts/0    00:00:00 top
 UID user - PID process ID - PPID parent - C CPU%
 
 STIME start - CMD command line
+
+### 7. `systemctl` — Managing Services
+
+`systemctl` is a command-line utility to manage systemd services. It allows you to start, stop, restart, enable, and disable services on a Linux system.
+
+#### Examples:
+1. **Check the status of a service**:
+   ```bash
+   systemctl status nginx
+   ```
+   → Displays the current status of the `nginx` service.
+
+2. **Start a service**:
+   ```bash
+   sudo systemctl start nginx
+   ```
+   → Starts the `nginx` service.
+
+3. **Stop a service**:
+   ```bash
+   sudo systemctl stop nginx
+   ```
+   → Stops the `nginx` service.
+
+4. **Restart a service**:
+   ```bash
+   sudo systemctl restart nginx
+   ```
+   → Restarts the `nginx` service.
+
+5. **Enable a service to start on boot**:
+   ```bash
+   sudo systemctl enable nginx
+   ```
+   → Configures the `nginx` service to start automatically on boot.
+
+6. **Disable a service from starting on boot**:
+   ```bash
+   sudo systemctl disable nginx
+   ```
+   → Prevents the `nginx` service from starting automatically on boot.
+
+7. **List all active services**:
+   ```bash
+   systemctl list-units --type=service
+   ```
+   → Displays a list of all active services.
+
+#### Pro Tip:
+To view logs for a specific service, use:
+```bash
+journalctl -u nginx
+```

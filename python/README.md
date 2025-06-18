@@ -45,8 +45,14 @@ The application will be available at `http://127.0.0.1:8000`.
    ```
 2. Run the Docker container:
    ```bash
-   docker run -p 8000:8000 python-oop-api
+docker run -it -p 8000:8000 python-oop-api 
    ```
+### Run container with a name
+
+      ```bash
+docker run --name python-oop-api -it -p 8000:8000 python-oop-api 
+   ```
+
 
 ### API Endpoints
 
