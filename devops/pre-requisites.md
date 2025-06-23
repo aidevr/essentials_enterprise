@@ -30,9 +30,5 @@ To successfully run this training, ensure the following prerequisites are met:
 ## 8. Network Access
 - Ensure you have an active internet connection to pull Docker images and clone repositories.
 
-## 9. Environment Variables
-- Set up the following environment variables for Docker Hub access:
-  - `DOCKER_USERNAME`: Your Docker Hub username.
-  - `DOCKER_PASSWORD`: Your Docker Hub password or access token.
 
 Let me know if you need further details or assistance with any of these steps!
