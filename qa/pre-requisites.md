@@ -19,4 +19,4 @@ To ensure a smooth hands-on experience during the training, please set up the fo
 - **Apache JMeter**  
   For performance testing and load simulation.
 
-> ℹ️ All other required NuGe
+> ℹ️ All other required NuGet packages (e.g., Selenium WebDriver, NUnit, Reqnroll, RestSharp) will be installed live during the demo sessions.
