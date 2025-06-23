@@ -11,7 +11,7 @@
 | **Pull an image** | `docker pull ubuntu:22.04` | Downloads the specified tag from Docker Hub (defaults to `latest`). |
 | **List images** | `docker images` | Shows local image cache. |
 | **Run a container (interactive)** | `docker run -it --name demo ubuntu:22.04 bash` | `-it` for interactive TTY. |
-| **Run in background** | `docker run -d -p 8080:80 nginx:alpine` | `-d` detached; `-p` maps ports. |
+| **Run in background** | `docker run -d -p 8082:80 nginx:alpine` | `-d` detached; `-p` maps ports. |
 | **Run Redis in background** | `docker run -d --name redis-server -p 6379:6379 redis:alpine` | `-d` detached; `-p` maps ports. |
 | **List running containers** | `docker ps` | Add `-a` for stopped ones. |
 | **Stop / remove** | `docker stop <ID>` · `docker rm <ID>` | Or `docker rm -f <ID>` to force. |
