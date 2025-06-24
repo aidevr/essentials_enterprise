@@ -1,34 +1,5 @@
 # 🎯 **Complete Git Tutorial: From Init to Remote Push**
-```mermaidjs
-flowchart TD
-    A[Initialize New Repository] --> B[Create Initial Commit on Main Branch]
-    B --> C[Verify Branch Creation]
-    C --> D[Create Feature Branch]
-    D --> E[Work on Feature Branch]
-    E --> F[Switch Between Branches]
-    F --> G[Merge Feature Branch into Main]
-    G --> H[Create Release Branch and Tag]
-    H --> I[Set Up Remote Repository]
-    I --> J[Push All Branches and Tags to Remote]
-    J --> K[Verify Remote Repository]
 
-    subgraph Local Workflow
-      A
-      B
-      C
-      D
-      E
-      F
-      G
-      H
-    end
-
-    subgraph Remote Integration
-      I
-      J
-      K
-    end
-```
 ## **Correct Workflow for Git Branch Management**
 
 ---
