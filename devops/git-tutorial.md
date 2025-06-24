@@ -130,7 +130,7 @@ ls
 ---
 
 ## **Step 8: Create Release Branch and Tag**
-
+A tag is like a branch that doesn't change. Unlike branches, tags, after being created, have no further history of commits.
 ```bash
 # Create release branch from main
 git checkout main
