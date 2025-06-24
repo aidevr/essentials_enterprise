@@ -17,6 +17,7 @@
 | **Stop / remove** | `docker stop <ID>` · `docker rm <ID>` | Or `docker rm -f <ID>` to force. |
 | **Exec into container** | `docker exec -it <ID> bash` | Opens shell inside running container. |
 | **Exec into Redis CLI** | `docker exec -it redis-server redis-cli` | Opens Redis CLI inside the running container. |
+| **Mount volume** | `docker run --name myubuntu -v /home/asna/devops_demo:/home/test -it ubuntu /bin/bash` | Mount a host volume into container. |
 | **View logs** | `docker logs -f <ID>` | `-f` = follow (tail). |
 | **Copy file in/out** | `docker cp host.txt <ID>:/tmp/` | Works both directions. |
 | **Build image** | `docker build -t myapp:1.0 .` | Dot = current directory context. |
